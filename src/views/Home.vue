@@ -3,10 +3,14 @@
      <h2>Videos</h2>
      <div class="video-container">
         <div v-for="video in videos" :key="video.name">
+          <router-link :to="{ name: 'videowatch',params: {id: video.id}}">
           <div class="video-box">
-               {{video.name}}
-               {{video.description}}
-          </div>    
+            <img :src="video.thumbnail" />
+               <h3>{{video.name}}</h3>
+               <div v-html="video.description"></div>
+
+          </div>
+        </router-link>    
         </div>
      </div>
   </div>
@@ -21,32 +25,7 @@ export default {
   },
   data() {
     return {
-      videos:[
-        {
-          name: 'squad',
-          description : 'something chbhjckhcb hchuhjbchbc ivi hhufuiufruii'
-        },
-        {
-          name: 'mortey',
-          description : 'mortey chbhjckhcb hchuhjbchbc ivi hhufuiufruii'
-        },
-        {
-          name: 'blacklist',
-          description : 'blacklist chbhjckhcb hchuhjbchbc ivi hhufuiufruii'
-        },
-        {
-          name: 'power',
-          description : 'power chbhjckhcb hchuhjbchbc ivi hhufuiufruii'
-        },
-        {
-          name: 'family guy',
-          description : 'family guy chbhjckhcb hchuhjbchbc ivi hhufuiufruii'
-        },
-        {
-          name: 'family guy',
-          description : 'family guy chbhjckhcb hchuhjbchbc ivi hhufuiufruii'
-        }
-      ]
+      videos: this.$store.state.videos 
     }
   },
 }
@@ -57,6 +36,18 @@ export default {
   .video-container{
     .video-box{
        border: 1px solid black;
+       border-radius: 10px;
+       margin: 10px;
+       padding: 10px;
+       text-align: left;
+
+       display:flex;
+       justify-content: flex-start;
+
+       img{
+         max-height: 154px;
+         padding: 10px;
+       }
     }
   }
 </style>
